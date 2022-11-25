@@ -1,0 +1,44 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Customer Registration{% endblock title %}
+{% block main-content %}
+<div class="container">
+ <div class="row my-3">
+  <div class="col-sm-6 offset-sm-3">
+   <h3>Customer Registration</h3>
+   <hr>
+
+   <form action="" method="POST"  class="shadow p-5">
+     {% if messages%}
+      {% for message in messages %}
+       <p class="alert alert-{{message.tags}} mb-5">{{message}}</p>
+       {% endfor %}
+     {% endif%}
+    {% csrf_token %}
+     <div class="mb-3">
+     <label for="username" class="form-label">Username</label>
+     <input type="text" class="form-control" id="username" name="username">
+    </div>
+    <div class="mb-3">
+     <label for="inputEmail4" class="form-label">Email</label>
+     <input type="email" class="form-control" id="inputEmail4"name="email">
+    </div>
+    <div class="mb-3">
+     <label for="" class="form-label">Password</label>
+     <input type="password" class="form-control" id="pass" name="pass">
+    </div>
+    <div class="mb-3">
+     <label for="inputPassword2" class="form-label">Confirm Password</label>
+     <input type="password" class="form-control" id="inputPassword2" name="pass2">
+    </div>
+    <div class="text-start">
+     <button type="submit" class="btn btn-danger">Submit</button>
+    </div>
+    <br>
+    <div class="text-center text-primary fw-bold"><small>Existing User ? <a href="{% url 'login' %}"
+       class="text-danger">Login Now</a> </small></div>
+   </form>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}

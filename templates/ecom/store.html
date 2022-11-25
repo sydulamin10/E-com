@@ -1,0 +1,95 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Store{% endblock title %}
+{% block main-content %}
+<style>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#manu .main{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 0px;
+}
+
+#manu .item{
+
+    width: 18%;
+    padding-top: 5px;
+    border: 1px solid gray;
+
+
+}
+#manu .item img{
+    height: 180px;
+
+
+}
+
+#manu .item button {
+    margin-top: 10px;
+    padding: 7px 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: brown;
+}
+
+#manu .item a{
+
+    text-decoration: none;
+    color:white;
+
+
+
+}
+h2{
+    margin-top: 20px;
+}
+
+.item img{
+      margin-left: 23px;
+}
+
+
+</style>
+
+
+<!--slide 1-->
+<br>
+<section id="manu">
+  <div class="container">
+      <h2 >Good Day</h2>
+      <br>
+
+  <div class="main">
+      {% for t in top%}
+   <div class="item">
+              <a href="{% url 'productdetails' t.id%}"><img src="{{t.product_image.url }}" alt="" height="200px"></a><br><span class="fw-bold">{{t.name}}</span><br><span class="fs-5">Price: {{t.price}}</span><br><span class="fs-5">Discount Price: {{t.discount_price}}</span><br>
+        <!--         <button style="background-color:brown;" ><a href="">Add Cart</a>  </button>-->
+               <form action="/add-to-cart" class="d-inline">
+            <input type="hidden" name="prod_id" value="{{t.id}}" id="prod_id">
+            <button type="submit" class="add-notification btn btn-primary shadow px-5 py-2" ><span pid="">Add to Cart</span> </button>
+            </form>
+               <a href="{% url 'show_cart' %}"  class="btn btn-warning px-5 py-2 ">Go to Cart</a>
+
+    </div>
+      {% endfor %}
+  </div>
+
+
+</div>
+
+</section>
+
+
+
+
+<br><br>
+
+
+
+{% endblock %}

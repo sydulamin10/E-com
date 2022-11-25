@@ -1,0 +1,37 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Login{% endblock title %}
+{% block main-content %}
+<div class="container">
+ <div class="row my-3">
+  <div class="col-sm-6 offset-sm-3">
+   <h3>Login</h3>
+   <hr>
+    <form action="" method="post" novalidate class="shadow p-5">
+      {% if messages%}
+      {% for message in messages %}
+       <p class="alert alert-{{message.tags}} mb-5">{{message}}</p>
+       {% endfor %}
+     {% endif%}
+   {% csrf_token %}
+    <div class="mb-3">
+     <label for="" class="form-label">username</label>
+     <input type="text" class="form-control" id="username" name="username" placeholder="Enter your name" required>
+    </div>
+      <div class="mb-3">
+     <label for="" class="form-label">password</label>
+     <input type="password" class="form-control" id="pass" name="pass" placeholder="Enter your name" required >
+    </div>
+
+    <div class="text-first">
+     <button type="submit" class="btn btn-danger">Submit</button>
+    </div>
+    <br>
+    <div class="text-center text-primary fw-bold"><small>Create New Account <a href="{% url 'registration' %}"
+       class="text-danger">Signup</a> </small></div>
+   </form>
+  </div>
+ </div>
+</div>
+
+{% endblock main-content %}
